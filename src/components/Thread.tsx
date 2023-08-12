@@ -1,16 +1,24 @@
-const Thread = () => {
+import { User } from "./userTypes";
+import { ThreadType } from "./threadTypes";
+
+interface ThreadProps {
+  user: User;
+  filteredThread: ThreadType;
+}
+
+const Thread: React.FC<ThreadProps> = ({ user, filteredThread }) => {
   return (
     <article className="feed-card">
       <div className="text-container">
         <div>
           <div className="img-container">
-            <img src="" alt="profile avatar" />
+            <img src={user.img} alt="profile avatar" />
           </div>
           <div>
             <p>
-              <strong>handle</strong>
+              <strong>{user.handle}</strong>
             </p>
-            <p>text</p>
+            <p>{filteredThread.text}</p>
           </div>
         </div>
         <p>time</p>

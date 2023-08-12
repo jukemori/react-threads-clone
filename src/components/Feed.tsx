@@ -5,7 +5,6 @@ import { ThreadType } from "./threadTypes";
 interface FeedProps {
   user: User;
   filteredThreads: ThreadType[];
-  filteredThread: ThreadType;
 }
 
 const Feed: React.FC<FeedProps> = ({ user, filteredThreads }) => {
