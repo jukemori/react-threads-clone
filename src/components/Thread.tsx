@@ -1,3 +1,6 @@
+import { useState, useEffect } from "react";
+import moment from "moment";
+
 import { User } from "./userTypes";
 import { ThreadType } from "./threadTypes";
 
@@ -7,6 +10,9 @@ interface ThreadProps {
 }
 
 const Thread: React.FC<ThreadProps> = ({ user, filteredThread }) => {
+  const threadTime = moment(filteredThread.timestamp);
+  const timePassed = threadTime.startOf("day").fromNow();
+
   return (
     <article className="feed-card">
       <div className="text-container">
@@ -21,7 +27,7 @@ const Thread: React.FC<ThreadProps> = ({ user, filteredThread }) => {
             <p>{filteredThread.text}</p>
           </div>
         </div>
-        <p>time</p>
+        <p className="sub-text">{timePassed}</p>
       </div>
       <div className="icons">
         <svg
@@ -63,7 +69,8 @@ const Thread: React.FC<ThreadProps> = ({ user, filteredThread }) => {
         </svg>
       </div>
       <p className="sub-text">
-        <span>X replies</span> • <span>X likes</span>
+        <span>X replies</span> •{" "}
+        <span>{filteredThread.likes.length} likes</span>
       </p>
     </article>
   );
