@@ -3,14 +3,14 @@ import Nav from "./components/Nav";
 import Header from "./components/Header";
 import Feed from "./components/Feed";
 import { User } from "./components/userTypes";
-import { Thread } from "./components/threadTypes";
+import { ThreadType } from "./components/threadTypes";
 import PopUp from "./components/PopUp";
 
 const App = () => {
   const [user, setUser] = useState<User | null>(null);
-  const [threads, setThreads] = useState<Thread[]>([]);
+  const [threads, setThreads] = useState<ThreadType[]>([]);
   const [viewThreadsFeed, setViewThreadsFeed] = useState(true);
-  const [filteredThreads, setFilteredThreads] = useState<Thread[]>([]);
+  const [filteredThreads, setFilteredThreads] = useState<ThreadType[]>([]);
 
   const userId = "ca39d69f-e237-4bb9-863c-80f7af74bd17";
 
@@ -77,7 +77,7 @@ const App = () => {
             viewThreadsFeed={viewThreadsFeed}
             setViewThreadsFeed={setViewThreadsFeed}
           />
-          <Feed />
+          <Feed user={user} fileteredThreads={filteredThreads} />
           {/* <PopUp /> */}
         </div>
       )}

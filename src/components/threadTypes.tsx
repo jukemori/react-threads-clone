@@ -2,7 +2,7 @@ interface Like {
   user_uuid: string;
 }
 
-export interface Thread {
+export interface ThreadType {
   id: number;
   timestamp: string;
   thread_from: string;
