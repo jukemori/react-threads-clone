@@ -5,12 +5,14 @@ import Feed from "./components/Feed";
 import { User } from "./components/userTypes";
 import { ThreadType } from "./components/threadTypes";
 import PopUp from "./components/PopUp";
+import WriteIcon from "./components/WriteIcon";
 
 const App = () => {
   const [user, setUser] = useState<User | null>(null);
   const [threads, setThreads] = useState<ThreadType[]>([]);
   const [viewThreadsFeed, setViewThreadsFeed] = useState(true);
   const [filteredThreads, setFilteredThreads] = useState<ThreadType[]>([]);
+  const [openPopUp, setOpenPopUp] = useState(false);
 
   const userId = "ca39d69f-e237-4bb9-863c-80f7af74bd17";
 
@@ -78,7 +80,10 @@ const App = () => {
             setViewThreadsFeed={setViewThreadsFeed}
           />
           <Feed user={user} filteredThreads={filteredThreads} />
-          {/* <PopUp /> */}
+          {openPopUp && <PopUp />}
+          <div onClick={() => setOpenPopUp(true)}>
+            <WriteIcon />
+          </div>
         </div>
       )}
     </>

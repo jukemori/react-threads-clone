@@ -10,7 +10,7 @@ interface FeedProps {
 const Feed: React.FC<FeedProps> = ({ user, filteredThreads }) => {
   return (
     <div className="feed">
-      {filteredThreads.map((filteredThread) => (
+      {filteredThreads?.map((filteredThread) => (
         <Thread
           key={filteredThread.id}
           user={user}
