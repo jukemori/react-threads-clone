@@ -2,9 +2,15 @@ import { User } from "./userTypes";
 
 interface HeaderProps {
   user: User;
+  viewThreadsFeed: boolean;
+  setViewThreadsFeed: (value: boolean) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ user }) => {
+const Header: React.FC<HeaderProps> = ({
+  user,
+  viewThreadsFeed,
+  setViewThreadsFeed,
+}) => {
   return (
     <header>
       <div className="info-container">
@@ -36,8 +42,18 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
       </button>
 
       <div className="button-container">
-        <button>Threads</button>
-        <button>Replies</button>
+        <button
+          className={viewThreadsFeed ? "current" : ""}
+          onClick={() => setViewThreadsFeed(true)}
+        >
+          Threads
+        </button>
+        <button
+          className={!viewThreadsFeed ? "current" : ""}
+          onClick={() => setViewThreadsFeed(false)}
+        >
+          Replies
+        </button>
       </div>
     </header>
   );

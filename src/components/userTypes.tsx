@@ -1,5 +1,5 @@
 // Define the Follower interface
-export interface Follower {
+interface Follower {
   user_uuid: string;
 }
 
