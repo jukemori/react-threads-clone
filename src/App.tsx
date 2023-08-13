@@ -13,6 +13,10 @@ const App = () => {
   const [viewThreadsFeed, setViewThreadsFeed] = useState(true);
   const [filteredThreads, setFilteredThreads] = useState<ThreadType[]>([]);
   const [openPopUp, setOpenPopUp] = useState(false);
+  const [interactingThread, setInteractingThread] = useState<ThreadType | null>(
+    null
+  );
+  const [popUpFeedThreads, setPopUpFeedThreads] = useState<ThreadType[]>([]);
 
   const userId = "ca39d69f-e237-4bb9-863c-80f7af74bd17";
 
@@ -58,6 +62,22 @@ const App = () => {
     }
   };
 
+  const gerReplies = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/threads?reply_to=${interactingThread?.id}`
+      );
+      const data = await response.json();
+      setPopUpFeedThreads(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    gerReplies();
+  }, [interactingThread]);
+
   useEffect(() => {
     getUser();
     getThreads();
@@ -67,6 +87,7 @@ const App = () => {
     getThreadsFeed();
   }, [user, threads, viewThreadsFeed]);
 
+  console.log("popup threads", popUpFeedThreads);
   return (
     <>
       {user && (
@@ -82,8 +103,15 @@ const App = () => {
             filteredThreads={filteredThreads}
             setOpenPopUp={setOpenPopUp}
             getThreads={getThreads}
+            setInteractingThread={setInteractingThread}
           />
-          {openPopUp && <PopUp user={user} setOpenPopUp={setOpenPopUp} />}
+          {openPopUp && (
+            <PopUp
+              user={user}
+              setOpenPopUp={setOpenPopUp}
+              popUpFeedThreads={popUpFeedThreads}
+            />
+          )}
           <div onClick={() => setOpenPopUp(true)}>
             <WriteIcon />
           </div>

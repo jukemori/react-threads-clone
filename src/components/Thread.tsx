@@ -9,6 +9,7 @@ interface ThreadProps {
   filteredThread: ThreadType;
   setOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
   getThreads: () => void;
+  setInteractingThread: React.Dispatch<React.SetStateAction<ThreadType | null>>;
 }
 
 const Thread: React.FC<ThreadProps> = ({
@@ -16,12 +17,14 @@ const Thread: React.FC<ThreadProps> = ({
   filteredThread,
   setOpenPopUp,
   getThreads,
+  setInteractingThread,
 }) => {
   const threadTime = moment(filteredThread.timestamp);
   const timePassed = threadTime.startOf("day").fromNow();
 
   const handleClick = () => {
     setOpenPopUp(true);
+    setInteractingThread(filteredThread);
   };
 
   console.log("filteredThread", filteredThread);
