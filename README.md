@@ -1,4 +1,4 @@
-# Movie Watchlist
+# Threads clone
 
 This is a React app written in TypeScript that allows users to interact with threads and replies. Users can view and create threads, as well as post replies.
 
