@@ -7,11 +7,71 @@ import { ThreadType } from "./threadTypes";
 interface ThreadProps {
   user: User;
   filteredThread: ThreadType;
+  setOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
+  getThreads: () => void;
+  setInteractingThread: React.Dispatch<React.SetStateAction<ThreadType | null>>;
 }
 
-const Thread: React.FC<ThreadProps> = ({ user, filteredThread }) => {
+const Thread: React.FC<ThreadProps> = ({
+  user,
+  filteredThread,
+  setOpenPopUp,
+  getThreads,
+  setInteractingThread,
+}) => {
+  const [repliesLength, setRepliesLength] = useState<number>(0);
+
   const threadTime = moment(filteredThread.timestamp);
   const timePassed = threadTime.startOf("day").fromNow();
+
+  const handleClick = () => {
+    setOpenPopUp(true);
+    setInteractingThread(filteredThread);
+  };
+
+  console.log("filteredThread", filteredThread);
+  const postLike = async () => {
+    const hasBeenLikedByUser = filteredThread.likes.some(
+      (like) => like.user_uuid === user.user_uuid
+    );
+    if (!hasBeenLikedByUser) {
+      filteredThread.likes.push({ user_uuid: user.user_uuid });
+
+      try {
+        const response = await fetch(
+          `http://localhost:3000/threads/${filteredThread.id}`,
+          {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(filteredThread),
+          }
+        );
+        const result = await response.json();
+        console.log("success", result);
+        getThreads();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const getRepliesLength = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/threads?reply_to=${filteredThread?.id}`
+      );
+      const data = await response.json();
+      setRepliesLength(data.length);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getRepliesLength();
+  }, [filteredThread]);
 
   return (
     <article className="feed-card">
@@ -31,6 +91,7 @@ const Thread: React.FC<ThreadProps> = ({ user, filteredThread }) => {
       </div>
       <div className="icons">
         <svg
+          onClick={postLike}
           clipRule="evenodd"
           fillRule="evenodd"
           strokeLinejoin="round"
@@ -44,6 +105,7 @@ const Thread: React.FC<ThreadProps> = ({ user, filteredThread }) => {
           />
         </svg>
         <svg
+          onClick={handleClick}
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -69,7 +131,7 @@ const Thread: React.FC<ThreadProps> = ({ user, filteredThread }) => {
         </svg>
       </div>
       <p className="sub-text">
-        <span>X replies</span> •{" "}
+        <span onClick={handleClick}>{repliesLength} replies</span> •
         <span>{filteredThread.likes.length} likes</span>
       </p>
     </article>

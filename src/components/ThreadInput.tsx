@@ -1,9 +1,25 @@
-const ThreadInput = () => {
+import { User } from "./userTypes";
+
+interface ThreadInputProps {
+  user: User;
+  text: string;
+  setText: React.Dispatch<React.SetStateAction<string>>;
+  postThread: () => void;
+}
+
+const ThreadInput: React.FC<ThreadInputProps> = ({
+  user,
+  text,
+  setText,
+  postThread,
+}) => {
   return (
     <>
-      <p></p>
-      <input />
-      <button className="primary">Post</button>
+      <p>{user.handle}</p>
+      <input value={text} onChange={(e) => setText(e.target.value)} />
+      <button className="primary" onClick={postThread}>
+        Post
+      </button>
     </>
   );
 };
