@@ -1,13 +1,25 @@
 import PopUpThread from "./PopUpThread";
 import ThreadInput from "./ThreadInput";
 import { ThreadType } from "./threadTypes";
+import { User } from "./userTypes";
 
 interface PopUpProps {
+  user: User;
   setOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
   popUpFeedThreads: ThreadType[] | null;
+  text: string;
+  setText: React.Dispatch<React.SetStateAction<string>>;
+  postThread: () => void;
 }
 
-const PopUp: React.FC<PopUpProps> = ({ setOpenPopUp, popUpFeedThreads }) => {
+const PopUp: React.FC<PopUpProps> = ({
+  user,
+  setOpenPopUp,
+  popUpFeedThreads,
+  text,
+  setText,
+  postThread,
+}) => {
   return (
     <div className="popup">
       <p onClick={() => setOpenPopUp(false)}>X</p>
@@ -17,7 +29,12 @@ const PopUp: React.FC<PopUpProps> = ({ setOpenPopUp, popUpFeedThreads }) => {
           popUpFeedThread={popUpFeedThread}
         />
       ))}
-      <ThreadInput />
+      <ThreadInput
+        user={user}
+        text={text}
+        setText={setText}
+        postThread={postThread}
+      />
     </div>
   );
 };

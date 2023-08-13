@@ -19,6 +19,8 @@ const Thread: React.FC<ThreadProps> = ({
   getThreads,
   setInteractingThread,
 }) => {
+  const [repliesLength, setRepliesLength] = useState<number>(0);
+
   const threadTime = moment(filteredThread.timestamp);
   const timePassed = threadTime.startOf("day").fromNow();
 
@@ -54,6 +56,22 @@ const Thread: React.FC<ThreadProps> = ({
       }
     }
   };
+
+  const getRepliesLength = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/threads?reply_to=${filteredThread?.id}`
+      );
+      const data = await response.json();
+      setRepliesLength(data.length);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getRepliesLength();
+  }, [filteredThread]);
 
   return (
     <article className="feed-card">
@@ -113,8 +131,8 @@ const Thread: React.FC<ThreadProps> = ({
         </svg>
       </div>
       <p className="sub-text">
-        <span>X replies</span> •{" "}
-        <span onClick={handleClick}>{filteredThread.likes.length} likes</span>
+        <span onClick={handleClick}>{repliesLength} replies</span> •
+        <span>{filteredThread.likes.length} likes</span>
       </p>
     </article>
   );

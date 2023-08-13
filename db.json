@@ -123,6 +123,24 @@
       "reply_to": 0,
       "text": "Hi!",
       "likes": []
+    },
+    {
+      "timestamp": "2023-08-13T04:20:47.945Z",
+      "thread_from": "ca39d69f-e237-4bb9-863c-80f7af74bd17",
+      "thread_to": "ca39d69f-e237-4bb9-863c-80f7af74bd17",
+      "reply_to": null,
+      "text": "Hello",
+      "likes": [],
+      "id": 6
+    },
+    {
+      "timestamp": "2023-08-13T04:31:51.226Z",
+      "thread_from": "ca39d69f-e237-4bb9-863c-80f7af74bd17",
+      "thread_to": "ca39d69f-e237-4bb9-863c-80f7af74bd17",
+      "reply_to": 1,
+      "text": "hello again",
+      "likes": [],
+      "id": 7
     }
   ]
 }
