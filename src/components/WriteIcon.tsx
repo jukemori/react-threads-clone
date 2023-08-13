@@ -2,10 +2,10 @@ const WriteIcon = () => {
   return (
     <svg
       className="write-icon"
-      clip-rule="evenodd"
-      fill-rule="evenodd"
-      stroke-linejoin="round"
-      stroke-miterlimit="2"
+      clipRule="evenodd"
+      fillRule="evenodd"
+      strokeLinejoin="round"
+      strokeMiterlimit="2"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >

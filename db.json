@@ -1,4 +1,5 @@
- {"users": [
+{
+  "users": [
     {
       "id": 0,
       "user_uuid": "ca39d69f-e237-4bb9-863c-80f7af74bd17",
@@ -16,7 +17,6 @@
           "user_uuid": "375408f0-908a-4446-878f-af00fd851f6f"
         }
       ]
-
     },
     {
       "id": 1,
@@ -35,7 +35,6 @@
           "user_uuid": "375408f0-908a-4446-878f-af00fd851f6f"
         }
       ]
-
     },
     {
       "id": 2,
@@ -54,59 +53,63 @@
           "user_uuid": "7ca7b7f5-5e9d-4244-ada1-40183c718be3"
         }
       ]
-
     }
- ], "threads": [
-      {
-        "id": 0,
-        "timestamp": "Wed Aug 09 2023 19:03:28 GMT+0900 (Japan Standard Time)",
-        "thread_from": "ca39d69f-e237-4bb9-863c-80f7af74bd17",
-        "thread_to": null,
-        "reply_to": null,
-        "text": "Hello world (of threads)",
-        "likes": [
-          {
-            "user_uuid": "7ca7b7f5-5e9d-4244-ada1-40183c718be3"
-          },
-          {
-            "use_uuid": "375408f0-908a-4446-878f-af00fd851f6f"
-          }
-        ]
-      },
-      {
-        "id": 1,
-        "timestamp": "Wed Aug 09 2023 20:14:28 GMT+0900 (Japan Standard Time)",
-        "thread_from": "ca39d69f-e237-4bb9-863c-80f7af74bd17",
-        "thread_to": null,
-        "reply_to": null,
-        "text": "Awesome thread!",
-        "likes": []
-      },
-      {
-        "id": 2,
-        "timestamp": "Wed Aug 09 2023 20:30:28 GMT+0900 (Japan Standard Time)",
-        "thread_from": "ca39d69f-e237-4bb9-863c-80f7af74bd17",
-        "thread_to": null,
-        "reply_to": null,
-        "text": "Another one!",
-        "likes": []
-      },
-      {
-        "id": 3,
-        "timestamp": "Wed Aug 09 2023 21:30:28 GMT+0900 (Japan Standard Time)",
-        "thread_from": "7ca7b7f5-5e9d-4244-ada1-40183c718be3",
-        "thread_to": null,
-        "reply_to": null,
-        "text": "Excited to have launched Bobby's Burgers!",
-        "likes": []
-      },
-      {
-        "id": 4,
-        "timestamp": "Wed Aug 09 2023 21:31:28 GMT+0900 (Japan Standard Time)",
-        "thread_from": "ca39d69f-e237-4bb9-863c-80f7af74bd17",
-        "thread_to": "7ca7b7f5-5e9d-4244-ada1-40183c718be3",
-        "reply_to": 3,
-        "text": "Congrats!",
-        "likes": []
-      }
- ]}
+  ],
+  "threads": [
+    {
+      "id": 0,
+      "timestamp": "Wed Aug 09 2023 19:03:28 GMT+0900 (Japan Standard Time)",
+      "thread_from": "ca39d69f-e237-4bb9-863c-80f7af74bd17",
+      "thread_to": null,
+      "reply_to": null,
+      "text": "Hello world (of threads)",
+      "likes": [
+        {
+          "user_uuid": "7ca7b7f5-5e9d-4244-ada1-40183c718be3"
+        },
+        {
+          "use_uuid": "375408f0-908a-4446-878f-af00fd851f6f"
+        },
+        {
+          "user_uuid": "ca39d69f-e237-4bb9-863c-80f7af74bd17"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "timestamp": "Wed Aug 09 2023 20:14:28 GMT+0900 (Japan Standard Time)",
+      "thread_from": "ca39d69f-e237-4bb9-863c-80f7af74bd17",
+      "thread_to": null,
+      "reply_to": null,
+      "text": "Awesome thread!",
+      "likes": []
+    },
+    {
+      "id": 2,
+      "timestamp": "Wed Aug 09 2023 20:30:28 GMT+0900 (Japan Standard Time)",
+      "thread_from": "ca39d69f-e237-4bb9-863c-80f7af74bd17",
+      "thread_to": null,
+      "reply_to": null,
+      "text": "Another one!",
+      "likes": []
+    },
+    {
+      "id": 3,
+      "timestamp": "Wed Aug 09 2023 21:30:28 GMT+0900 (Japan Standard Time)",
+      "thread_from": "7ca7b7f5-5e9d-4244-ada1-40183c718be3",
+      "thread_to": null,
+      "reply_to": null,
+      "text": "Excited to have launched Bobby's Burgers!",
+      "likes": []
+    },
+    {
+      "id": 4,
+      "timestamp": "Wed Aug 09 2023 21:31:28 GMT+0900 (Japan Standard Time)",
+      "thread_from": "ca39d69f-e237-4bb9-863c-80f7af74bd17",
+      "thread_to": "7ca7b7f5-5e9d-4244-ada1-40183c718be3",
+      "reply_to": 3,
+      "text": "Congrats!",
+      "likes": []
+    }
+  ]
+}

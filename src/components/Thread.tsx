@@ -8,12 +8,14 @@ interface ThreadProps {
   user: User;
   filteredThread: ThreadType;
   setOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
+  getThreads: () => void;
 }
 
 const Thread: React.FC<ThreadProps> = ({
   user,
   filteredThread,
   setOpenPopUp,
+  getThreads,
 }) => {
   const threadTime = moment(filteredThread.timestamp);
   const timePassed = threadTime.startOf("day").fromNow();
@@ -22,16 +24,32 @@ const Thread: React.FC<ThreadProps> = ({
     setOpenPopUp(true);
   };
 
+  console.log("filteredThread", filteredThread);
   const postLike = async () => {
-    filteredThread.likes.push({ user_uuid: user.user_uuid });
+    const hasBeenLikedByUser = filteredThread.likes.some(
+      (like) => like.user_uuid === user.user_uuid
+    );
+    if (!hasBeenLikedByUser) {
+      filteredThread.likes.push({ user_uuid: user.user_uuid });
 
-    await fetch(`http://localhost:3000/threads/${filteredThread.id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(filteredThread),
-    });
+      try {
+        const response = await fetch(
+          `http://localhost:3000/threads/${filteredThread.id}`,
+          {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(filteredThread),
+          }
+        );
+        const result = await response.json();
+        console.log("success", result);
+        getThreads();
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   return (
@@ -52,6 +70,7 @@ const Thread: React.FC<ThreadProps> = ({
       </div>
       <div className="icons">
         <svg
+          onClick={postLike}
           clipRule="evenodd"
           fillRule="evenodd"
           strokeLinejoin="round"

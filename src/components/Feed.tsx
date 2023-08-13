@@ -6,9 +6,15 @@ interface FeedProps {
   user: User;
   filteredThreads: ThreadType[];
   setOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
+  getThreads: () => void;
 }
 
-const Feed: React.FC<FeedProps> = ({ user, filteredThreads, setOpenPopUp }) => {
+const Feed: React.FC<FeedProps> = ({
+  user,
+  filteredThreads,
+  setOpenPopUp,
+  getThreads,
+}) => {
   return (
     <div className="feed">
       {filteredThreads?.map((filteredThread) => (
@@ -17,6 +23,7 @@ const Feed: React.FC<FeedProps> = ({ user, filteredThreads, setOpenPopUp }) => {
           user={user}
           filteredThread={filteredThread}
           setOpenPopUp={setOpenPopUp}
+          getThreads={getThreads}
         />
       ))}
     </div>
