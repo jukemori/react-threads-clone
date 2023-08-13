@@ -87,8 +87,6 @@ const App = () => {
     getThreadsFeed();
   }, [user, threads, viewThreadsFeed]);
 
-  console.log("interacting thread", interactingThread);
-  console.log("popup threads", popUpFeedThreads);
   return (
     <>
       {user && (
