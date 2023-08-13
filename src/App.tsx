@@ -116,6 +116,12 @@ const App = () => {
     getThreadsFeed();
   }, [user, threads, viewThreadsFeed]);
 
+  const handleClick = () => {
+    setPopUpFeedThreads([]);
+    setInteractingThread(null);
+    setOpenPopUp(true);
+  };
+
   return (
     <>
       {user && (
@@ -143,7 +149,7 @@ const App = () => {
               postThread={postThread}
             />
           )}
-          <div onClick={() => setOpenPopUp(true)}>
+          <div onClick={handleClick}>
             <WriteIcon />
           </div>
         </div>
