@@ -66,10 +66,10 @@
         "text": "Hello world (of threads)",
         "likes": [
           {
-            "uuid": "7ca7b7f5-5e9d-4244-ada1-40183c718be3"
+            "user_uuid": "7ca7b7f5-5e9d-4244-ada1-40183c718be3"
           },
           {
-            "uuid": "375408f0-908a-4446-878f-af00fd851f6f"
+            "use_uuid": "375408f0-908a-4446-878f-af00fd851f6f"
           }
         ]
       },

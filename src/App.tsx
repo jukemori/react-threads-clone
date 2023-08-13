@@ -79,8 +79,12 @@ const App = () => {
             viewThreadsFeed={viewThreadsFeed}
             setViewThreadsFeed={setViewThreadsFeed}
           />
-          <Feed user={user} filteredThreads={filteredThreads} />
-          {openPopUp && <PopUp />}
+          <Feed
+            user={user}
+            filteredThreads={filteredThreads}
+            setOpenPopUp={setOpenPopUp}
+          />
+          {openPopUp && <PopUp user={user} setOpenPopUp={setOpenPopUp} />}
           <div onClick={() => setOpenPopUp(true)}>
             <WriteIcon />
           </div>

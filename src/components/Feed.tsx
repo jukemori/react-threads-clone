@@ -5,9 +5,10 @@ import { ThreadType } from "./threadTypes";
 interface FeedProps {
   user: User;
   filteredThreads: ThreadType[];
+  setOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Feed: React.FC<FeedProps> = ({ user, filteredThreads }) => {
+const Feed: React.FC<FeedProps> = ({ user, filteredThreads, setOpenPopUp }) => {
   return (
     <div className="feed">
       {filteredThreads?.map((filteredThread) => (
@@ -15,6 +16,7 @@ const Feed: React.FC<FeedProps> = ({ user, filteredThreads }) => {
           key={filteredThread.id}
           user={user}
           filteredThread={filteredThread}
+          setOpenPopUp={setOpenPopUp}
         />
       ))}
     </div>

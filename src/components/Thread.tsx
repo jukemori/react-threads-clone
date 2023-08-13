@@ -7,11 +7,32 @@ import { ThreadType } from "./threadTypes";
 interface ThreadProps {
   user: User;
   filteredThread: ThreadType;
+  setOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Thread: React.FC<ThreadProps> = ({ user, filteredThread }) => {
+const Thread: React.FC<ThreadProps> = ({
+  user,
+  filteredThread,
+  setOpenPopUp,
+}) => {
   const threadTime = moment(filteredThread.timestamp);
   const timePassed = threadTime.startOf("day").fromNow();
+
+  const handleClick = () => {
+    setOpenPopUp(true);
+  };
+
+  const postLike = async () => {
+    filteredThread.likes.push({ user_uuid: user.user_uuid });
+
+    await fetch(`http://localhost:3000/threads/${filteredThread.id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(filteredThread),
+    });
+  };
 
   return (
     <article className="feed-card">
@@ -44,6 +65,7 @@ const Thread: React.FC<ThreadProps> = ({ user, filteredThread }) => {
           />
         </svg>
         <svg
+          onClick={handleClick}
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -70,7 +92,7 @@ const Thread: React.FC<ThreadProps> = ({ user, filteredThread }) => {
       </div>
       <p className="sub-text">
         <span>X replies</span> •{" "}
-        <span>{filteredThread.likes.length} likes</span>
+        <span onClick={handleClick}>{filteredThread.likes.length} likes</span>
       </p>
     </article>
   );
