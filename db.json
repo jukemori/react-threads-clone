@@ -82,7 +82,11 @@
       "thread_to": null,
       "reply_to": null,
       "text": "Awesome thread!",
-      "likes": []
+      "likes": [
+        {
+          "user_uuid": "ca39d69f-e237-4bb9-863c-80f7af74bd17"
+        }
+      ]
     },
     {
       "id": 2,
@@ -109,6 +113,15 @@
       "thread_to": "7ca7b7f5-5e9d-4244-ada1-40183c718be3",
       "reply_to": 3,
       "text": "Congrats!",
+      "likes": []
+    },
+    {
+      "id": 5,
+      "timestamp": "Wed Aug 09 2023 22:31:28 GMT+0900 (Japan Standard Time)",
+      "thread_from": "7ca7b7f5-5e9d-4244-ada1-40183c718be3",
+      "thread_to": "ca39d69f-e237-4bb9-863c-80f7af74bd17",
+      "reply_to": 0,
+      "text": "Hi!",
       "likes": []
     }
   ]

@@ -28,7 +28,7 @@ const App = () => {
       const data = await response.json();
       setUser(data[0]);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -62,7 +62,7 @@ const App = () => {
     }
   };
 
-  const gerReplies = async () => {
+  const getReplies = async () => {
     try {
       const response = await fetch(
         `http://localhost:3000/threads?reply_to=${interactingThread?.id}`
@@ -70,12 +70,12 @@ const App = () => {
       const data = await response.json();
       setPopUpFeedThreads(data);
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
   useEffect(() => {
-    gerReplies();
+    getReplies();
   }, [interactingThread]);
 
   useEffect(() => {
@@ -87,6 +87,7 @@ const App = () => {
     getThreadsFeed();
   }, [user, threads, viewThreadsFeed]);
 
+  console.log("interacting thread", interactingThread);
   console.log("popup threads", popUpFeedThreads);
   return (
     <>
