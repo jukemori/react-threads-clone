@@ -33,8 +33,8 @@ $ open http://localhost:5173
 ## Launch API Server
 
 ``` shell
-$ npx json-server --watch db.json
-$ open http://localhost:3000
+npx json-server --watch db.json
+open http://localhost:3000
 ```
 
 ## Features
